@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F4F3;
+}
+.container{
+    width: 800px;
+    height: 500px;
+    padding: 0;
+    display: flex;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0, 0,0,0.3)
+}
+
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;  
+    color: white;
+}
+
+.container-Profesores{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(0%);
+    background-image: url(../img/profesores.jpg);
+    background-position: center center;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+.container-Profesores h3{
+    font-size: 40px;
+}
+.container-Profesores p{
+    font-size: 14px;
+    text-align: center;
+}
+.container-Profesores .button{
+    border: 2px solid white;
+    background-color: transparent;
+}
+
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
+}
+
+
+.container-Estudiantes {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+    background-image: url(../img/estudiantes.jpg);
+    background-position: center center;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+    
+}
+
+.container-Estudiantes  h3{
+    font-size: 40px;
+}
+.container-Estudiantes  p{
+    font-size: 14px;
+    text-align: center;
+}
+.container-Estudiantes  .button{
+    border: 2px solid white;
+    background-color: transparent;
+}
+
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
+}
