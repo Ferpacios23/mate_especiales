@@ -38,28 +38,42 @@
     </div>
 
     <div class="container-form">
-        <form class="sign-up">
+        <form class="sign-up" action="./funciones/guardar_post.php" method="POST">
             <h2>Registrarse</h2>
             <span>Use su correo electrónico para registrarse</span>
+
             <div class="container-input">
                 <ion-icon name="person-outline"></ion-icon>
-                <input type="text" placeholder="Nombre">
+                <input type="text" name="identificacion" class="identificacion" placeholder="Identificacion (C.C o T.I)" required>
             </div>
+            <div class="container-input">
+                <ion-icon name="person-outline"></ion-icon>
+                <input type="text" name="nombre" placeholder="Nombre" required>
+            </div>            
             <div class="container-input">
                 <i class="bi bi-telephone"></i>
-                <input type="text" placeholder="Telefono">
-            </div>
+                <input type="text" name="telefono" placeholder="Telefono" required>
+            </div>            
             <div class="container-input">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="text" placeholder="Email">
+                <input type="email" name="correo" placeholder="Email" required>
             </div>
             <div class="container-input">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password" required>
             </div>
-            <button class="button" >REGISTRARSE</button>
+
+            <input type="hidden" name="id_rol" value="3">
+
+            <button name="registrarse" class="button" title="submit" >REGISTRARSE</button>
         </form>
     </div>
+
+
+
+
+
+    
 
     <div class="container-welcome">
         <div class="welcome-sign-up welcome">
