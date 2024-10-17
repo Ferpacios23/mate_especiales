@@ -21,19 +21,23 @@
         <a href="./index.html">
             <i class="bi bi-arrow-left-circle"></i>
         </a>
-        <form class="sign-in">
+        <form class="sign-in" action="./funciones/verificar_login.php" method="POST">
             <h2>Iniciar Sesión</h2>
+
             <span>Profesor ingrese su correo y contraseña</span>
+
             <div class="container-input">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="text" placeholder="Email">
+                <input type="text" name="ini_correo" placeholder="Correo Electrónico">
             </div>
             <div class="container-input">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" placeholder="Password">
-            </div>
+                <input type="password" name="ini_password" placeholder="Password">
+            </div> 
+            
             <a href="#">¿Olvidaste tu contraseña?</a>
-            <button class="button">INICIAR SESIÓN</button>
+            
+            <input class="button" type="submit" name="ingresar" placeholder="INICIAR SESIÓN"></input>
         </form>
     </div>
 
@@ -56,14 +60,14 @@
             </div>            
             <div class="container-input">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="email" name="correo" placeholder="Email" required>
+                <input type="email" name="correo" placeholder="Correo Electrónico" required>
             </div>
             <div class="container-input">
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <input type="password" name="password" placeholder="Password" required>
             </div>
 
-            <input type="hidden" name="id_rol" value="2">
+            <input type="number" name="id_rol" value="2" style="display: none;">
 
             <button name="registrarse" class="button" title="submit" >REGISTRARSE</button>
         </form>
@@ -73,7 +77,7 @@
 
 
 
-    <div class="container-welcome">
+    <div class="container-welcome" >
         <div class="welcome-sign-up welcome">
             <h3>¡Bienvenido!</h3>
             <p>Ingrese sus tus datos personales para usar todas las funciones del sitio</p>

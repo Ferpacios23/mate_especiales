@@ -21,19 +21,19 @@
         <a href="./index.html">
             <i class="bi bi-arrow-left-circle"></i>
         </a>
-        <form class="sign-in">
+        <form class="sign-in" action="./funciones/verificar_login.php" method="POST">
             <h2>Iniciar Sesión</h2>
             <span>Profesor ingrese su correo y contraseña</span>
             <div class="container-input">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="text" placeholder="Email">
+                <input type="email" name="ini_correo" placeholder="Correo Electrónico">
             </div>
             <div class="container-input">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" placeholder="Password">
+                <input type="password" name="ini_password" placeholder="Password">
             </div>
             <a href="#">¿Olvidaste tu contraseña?</a>
-            <button class="button">INICIAR SESIÓN</button>
+            <input class="button" type="submit" name="ingresar"></input>
         </form>
     </div>
 
@@ -63,7 +63,7 @@
                 <input type="password" name="password" placeholder="Password" required>
             </div>
 
-            <input type="hidden" name="id_rol" value="3">
+            <input type="number" name="id_rol" value="3" style="display: none;">
 
             <button name="registrarse" class="button" title="submit" >REGISTRARSE</button>
         </form>
@@ -91,7 +91,7 @@
 </div>
 
 
-<script src="js/script.js"></script>
+<script src="./js/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

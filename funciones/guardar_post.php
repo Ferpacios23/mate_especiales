@@ -1,6 +1,6 @@
 <?php
 
-include("coneccion.php");
+include("conexion.php");
 
 // Recoger los datos del formulario y asegurarse de que existen
 $identificacion = isset($_POST['identificacion']) ? $_POST['identificacion'] : '';
@@ -23,11 +23,12 @@ $sql = "INSERT INTO usuarios (id, nombre, telefono, correo, password, fechas_cre
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 // Preparar la consulta
-$stmt = mysqli_prepare($coneccion, $sql);
+$stmt = mysqli_prepare($conn, $sql);
+
 
 // Verificar si la consulta se preparó correctamente
 if (!$stmt) {
-    die('Error al preparar la consulta: ' . mysqli_error($coneccion));
+    die('Error al preparar la consulta: ' . mysqli_error($conn));
 }
 
 // Vincular los parámetros a la consulta
@@ -37,7 +38,7 @@ mysqli_stmt_bind_param($stmt, 'ssssssi', $identificacion, $nombre, $telefono, $c
 if (mysqli_stmt_execute($stmt)) {
     echo "Usuario registrado correctamente";
 } else {
-    die('Error al registrar el usuario: ' . mysqli_error($coneccion));
+    die('Error al registrar el usuario: ' . mysqli_error($conn));
 }
 
 // Cerrar la consulta preparada
@@ -45,10 +46,10 @@ mysqli_stmt_close($stmt);
 
 // Obtener el rol del usuario recién insertado
 $query_rol = "SELECT id_rol FROM usuarios WHERE id = ?";
-$stmt_rol = mysqli_prepare($coneccion, $query_rol);
+$stmt_rol = mysqli_prepare($conn, $query_rol);
 
 if (!$stmt_rol) {
-    die('Error al preparar la consulta para obtener el rol: ' . mysqli_error($coneccion));
+    die('Error al preparar la consulta para obtener el rol: ' . mysqli_error($conn));
 }
 
 // Vincular el parámetro (id/identificación)
@@ -59,6 +60,7 @@ mysqli_stmt_execute($stmt_rol);
 
 // Obtener el resultado
 $resultado_rol = mysqli_stmt_get_result($stmt_rol);
+
 $fila = mysqli_fetch_array($resultado_rol);
 
 // Redirigir al usuario según su rol
@@ -76,6 +78,6 @@ if ($fila) {
 
 // Cerrar la consulta y la conexión
 mysqli_stmt_close($stmt_rol);
-mysqli_close($coneccion);
+mysqli_close($conn);
 
 ?>
