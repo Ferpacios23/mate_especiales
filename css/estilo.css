@@ -236,7 +236,7 @@ hr {
 }
 
 #nuevaPregunta .correcta {
-    width: 10%;
+    width: 23%;
     padding: 6px;
     border: 1px solid #c0c0c0;
     margin-left: 15px;
@@ -465,4 +465,12 @@ hr {
 
 .form-eliminar .btn-eliminar:hover {
     background-color: darkred;
+}
+
+
+
+.btn-warning {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #ffc107;
+    --bs-btn-border-color: aliceblue;
 }

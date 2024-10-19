@@ -1,24 +1,27 @@
 <?php
 session_start();
 
-// Si el usuario no está logeado lo enviamos al login
-if (!$_SESSION['usuarioLogeado']) {
-    header("Location:index.html");
+// Verificar si el usuario está logueado, de lo contrario, redirigir al login
+if (!isset($_SESSION['usuarioLogeado'])) {
+    header("Location: index.html");
     exit();
 }
 
+// Incluir las funciones necesarias
 include("./funciones/funciones.php");
 
+// Aumentar el contador de visitas
 aumentarVisita();
 
 // Obtener la configuración del juego
-$confi = obtenerConfiguracion();
-$totalPreguntasPorJuego = $confi['totalPreguntas'];
+$config = obtenerValoresDeConfiguraciones();
+$totalPreguntasPorJuego = (int)$config['totalPreguntas'];
 
-// Obtener las categorías que tienen al menos el número necesario de preguntas
+// Obtener las categorías que tienen el número mínimo de preguntas necesarias
 $categorias = obtenertotalCategorias($totalPreguntasPorJuego);
 
-if(isset($_GET['idCategoria'])){
+// Redirigir al juego si se selecciona una categoría
+if (isset($_GET['idCategoria'])) {
     $_SESSION['usuario'] = "usuario";
     $_SESSION['idCategoria'] = $_GET['idCategoria'];
     header("Location: jugar.php");
@@ -32,13 +35,12 @@ if(isset($_GET['idCategoria'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/style_juego.css">
     <title>QUIZ GAME</title>
 </head>
 <body>
-    <div class="container" id="cantainer">
+    <div class="container" id="container">
         <div class="left">
             <div class="logo">
                 QUIZ GAME
@@ -50,14 +52,14 @@ if(isset($_GET['idCategoria'])){
             <div class="categorias">
                 <?php while ($cat = mysqli_fetch_assoc($categorias)): ?>
                 <div class="categoria">
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" id="<?php echo $cat['tema'] ?>">
-                        <input type="hidden" name="idCategoria" value="<?php echo $cat['tema'] ?>">
-                        <a href="javascript:{}" onclick="document.getElementById('<?php echo $cat['tema'] ?>').submit(); return false;">
-                            <?php echo obtenerNombreTema($cat['tema']) ?> 
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" id="<?php echo htmlspecialchars($cat['tema']); ?>">
+                        <input type="hidden" name="idCategoria" value="<?php echo htmlspecialchars($cat['tema']); ?>">
+                        <a href="javascript:{}" onclick="document.getElementById('<?php echo htmlspecialchars($cat['tema']); ?>').submit(); return false;">
+                            <?php echo obtenerNombreTema($cat['tema']); ?>
                         </a>
                     </form>
                 </div>
-                <?php endwhile ?>
+                <?php endwhile; ?>
             </div>
         </div>
     </div>

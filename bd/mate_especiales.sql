@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2024 a las 22:12:01
+-- Tiempo de generación: 19-10-2024 a las 21:08:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,22 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `config`
+-- Estructura de tabla para la tabla `configuracion`
 --
 
-CREATE TABLE `config` (
+CREATE TABLE `configuracion` (
   `id` int(11) NOT NULL,
-  `usuario` varchar(100) NOT NULL,
-  `password` varchar(10) NOT NULL,
-  `totalPreguntas` int(11) NOT NULL
+  `totalPreguntas` int(11) NOT NULL,
+  `tiempo_por_pregunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `config`
+-- Volcado de datos para la tabla `configuracion`
 --
 
-INSERT INTO `config` (`id`, `usuario`, `password`, `totalPreguntas`) VALUES
-(1, 'admin', 'admin', 2);
+INSERT INTO `configuracion` (`id`, `totalPreguntas`, `tiempo_por_pregunta`) VALUES
+(1, 8, 100);
 
 -- --------------------------------------------------------
 
@@ -59,7 +58,7 @@ CREATE TABLE `estadisticas` (
 --
 
 INSERT INTO `estadisticas` (`id`, `visitas`, `respondidas`, `completados`) VALUES
-(1, 135, 41, 12);
+(1, 167, 42, 13);
 
 -- --------------------------------------------------------
 
@@ -83,26 +82,8 @@ CREATE TABLE `preguntas` (
 --
 
 INSERT INTO `preguntas` (`id`, `tema`, `pregunta`, `opcion_a`, `opcion_b`, `opcion_c`, `opcion_d`, `correcta`) VALUES
-(3, 2, 'A', 'a', 'b', 'c', 'd', 'A'),
-(4, 2, 'b', 'a', 'b', 'c', 'd', 'B'),
-(5, 2, 'c', 'a', 'b', 'c', 'd', 'C'),
-(6, 2, 'd', 'a', 'b', 'c', 'd', 'D'),
-(7, 2, 'a2', 'a', 'b', 'c', 'd', 'A'),
-(8, 2, 'b2', 'a', 'b', 'c', 'd', 'B'),
-(9, 2, 'c2', 'a', 'b', 'c', 'd', 'C'),
-(10, 2, 'd2', 'a', 'b', 'c', 'd', 'D'),
-(11, 1, 'a', 'a', 'b', 'c', 'd', 'A'),
-(12, 1, 'b', 'a', 'b', 'c', 'd', 'B'),
-(13, 1, 'c', 'a', 'b', 'c', 'd', 'C'),
-(14, 1, 'd', 'a', 'b', 'c', 'd', 'D'),
-(15, 1, 'a2', 'a', 'b', 'c', 'd', 'A'),
-(16, 1, 'b2', 'a', 'b', 'c', 'd', 'B'),
-(17, 1, 'c2', 'a', 'b', 'c', 'd', 'C'),
-(18, 1, 'd2', 'a', 'b', 'c', 'd', 'D'),
-(19, 1, 'a3', 'a', 'b', 'c', 'd', 'A'),
-(20, 1, 'b3', 'a', 'b', 'c', 'd', 'B'),
-(21, 1, 'c3', 'a', 'b', 'c', 'd', 'C'),
-(22, 1, 'd3', 'a', 'b', 'c', 'd', 'D');
+(1, 2, 'a ', 'a', 'b', 'c', 'd', 'A'),
+(2, 1, 'b', 'a', 'b', 'c', 'd', 'A');
 
 -- --------------------------------------------------------
 
@@ -156,7 +137,6 @@ CREATE TABLE `usuarios` (
   `correo` varchar(60) NOT NULL,
   `password` varchar(80) NOT NULL,
   `fechas_creacion` date NOT NULL,
-  `totalPreguntas` int(11) DEFAULT NULL,
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -164,19 +144,19 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `telefono`, `correo`, `password`, `fechas_creacion`, `totalPreguntas`, `id_rol`) VALUES
-('1004251550', 'Manuel Palacios Mosquera', '3246173924', 'manuel@gmail.com', '$2y$10$JFhjEdRVBkTuOPrupoOz0.i.yFMYQjUFWDFVnkphFqf.ZA3Nn63Bq', '2024-10-17', NULL, 3),
-('1077425015', 'ferly palacios moya', '3234163627', 'admin@gmail.com', '$2y$10$yPMUxVcUdRWjWEmdv0sVv.JFdkbAgjJNzzfPDVfolESNm.F5lWkc.', '2024-10-17', 2, 1),
-('542570187', 'Blanca', '3116094236', 'blanca@gmail.com', '$2y$10$5THU.WLkbNxUaiObk6UunexPDZMqIUI0a0ITU17vBXYpil8mgOz1u', '2024-10-17', NULL, 2);
+INSERT INTO `usuarios` (`id`, `nombre`, `telefono`, `correo`, `password`, `fechas_creacion`, `id_rol`) VALUES
+('1004251550', 'Manuel Palacios Mosquera', '3246173924', 'manuel@gmail.com', '$2y$10$JFhjEdRVBkTuOPrupoOz0.i.yFMYQjUFWDFVnkphFqf.ZA3Nn63Bq', '2024-10-19', 2),
+('1077425015', 'ferly palacios moya', '3234163627', 'admin@gmail.com', '$2y$10$yPMUxVcUdRWjWEmdv0sVv.JFdkbAgjJNzzfPDVfolESNm.F5lWkc.', '2024-10-19', 1),
+('542570187', 'Blanca moya', '3116094236', 'blanca@gmail.com', '$2y$10$5THU.WLkbNxUaiObk6UunexPDZMqIUI0a0ITU17vBXYpil8mgOz1u', '2024-10-19', 2);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `config`
+-- Indices de la tabla `configuracion`
 --
-ALTER TABLE `config`
+ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,9 +195,9 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `config`
+-- AUTO_INCREMENT de la tabla `configuracion`
 --
-ALTER TABLE `config`
+ALTER TABLE `configuracion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -230,7 +210,7 @@ ALTER TABLE `estadisticas`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `temas`

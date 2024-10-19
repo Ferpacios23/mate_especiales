@@ -1,80 +1,87 @@
 <?php
 session_start();
 
-//Si el usuario no esta logeado lo enviamos al login
-if (!$_SESSION['usuarioLogeado']) {
-    header("Location:index.html");
+// Si el usuario no está logeado, redirigir al login
+if (!isset($_SESSION['usuarioLogeado'])) {
+    header("Location: index.html");
     exit();
-
 }
 
+// Incluir las funciones necesarias
 include("./funciones/funciones.php");
+include("./funciones/conexion.php");
 
-$config = obtenerConfiguracion();
+$config = obtenerConfiguracion($conn); // Obtener la configuración actual del sistema
+$obtenerValorConfig = obtenerValoresDeConfiguraciones($conn);
 
 /******************************************************* */
-//ACTUALIZAMOSS LA CONFIGURACION
+// ACTUALIZAMOS LA CONFIGURACIÓN
 if (isset($_GET['actualizar'])) {
-    //nos conectamos a la base de datos
-    include("./funciones/conexion.php");
+    // Validar y sanitizar los datos de entrada
+    $usuario = mysqli_real_escape_string($conn, $_GET['correo']);
+    $password = mysqli_real_escape_string($conn, $_GET['password']);
+    $totalPreguntas = (int)$_GET['totalPreguntas'];
+    $nuevo_tiempo = (int)$_GET['tiempo'];
 
-    //tomamos los datos que vienen del formulario
-    $usuario = $_GET['correo'];
-    $password = $_GET['password'];
-    $totalPreguntas = $_GET['totalPreguntas'];
+    // Validar que los campos no estén vacíos y que el número de preguntas sea mayor a 0
+    if (!empty($usuario) && !empty($password) && $totalPreguntas > 0 && $nuevo_tiempo > 0) {
+        // Consultas preparadas para actualizar usuario y configuración
+        $queryUsuario = "UPDATE usuarios SET correo=?, password=? WHERE id=1077425015";
+        $queryConfig = "UPDATE configuracion SET totalPreguntas=?, tiempo_por_pregunta=? WHERE id=1";
 
-    if( $totalPreguntas > 0){
-        //Armamos el query para actualizar en la tabla configuracion
-        $query = "UPDATE usuarios SET correo='$usuario', password='$password', totalPreguntas='$totalPreguntas' WHERE id='1077425015'";
-        
-        if (mysqli_query($conn, $query)) { //Se actualizo correctamente
-            $mensaje = "La configuración se actualizo correctamente";
+        // Preparar y ejecutar ambas consultas
+        $stmtUsuario = $conn->prepare($queryUsuario);
+        $stmtUsuario->bind_param("ss", $usuario, $password);
+
+        $stmtConfig = $conn->prepare($queryConfig);
+        $stmtConfig->bind_param("ii", $totalPreguntas, $nuevo_tiempo);
+
+        if ($stmtUsuario->execute() && $stmtConfig->execute()) {
+            $mensaje = "La configuración se actualizó correctamente.";
             header("Location: configuracion.php");
-            echo "naad";
+            exit(); // Importante: detener el script después de la redirección
         } else {
-            $mensaje = "No se pudo actualizar en la BD" . mysqli_error($conn);
+            $mensaje = "Error al actualizar la configuración: ";
         }
-    }else{
-        $mensaje = "No se pudo actualizar en la BD" . mysqli_error($conn);
+    } else {
+        $mensaje = "Por favor, complete todos los campos correctamente.";
     }
+}
 
-    //actualizamos en la tabla configuracion
-}
-//ELIMINAR PREGUNTAS
+/******************************************************* */
+// ELIMINAR PREGUNTAS
 if (isset($_GET['eliminarPreguntas'])) {
-    //nos conectamos a la base de datos
-    include("conexion.php");
-    //sentiencia para eliminar los datos de la tabla
-    $query ="TRUNCATE TABLE preguntas";
-    //eliminamos los datos de la tabla preguntas
-    if (mysqli_query($conn, $query)) { //Se eliminó correctamente
-        $mensaje = "Se eliminaron los datos de la tabla preguntas";
+    
+    // Sentencia para eliminar las preguntas
+    $queryEliminarPreguntas = "TRUNCATE TABLE preguntas";
+
+    if (mysqli_query($conn, $queryEliminarPreguntas)) {
+        $mensaje = "Se eliminaron todas las preguntas correctamente.";
         header("Location: index.php");
+        exit(); // Detener el script después de la redirección
     } else {
-        $mensaje = "No se pudo eliminar en la BD" . mysqli_error($conn);
+        $mensaje = "Error al eliminar preguntas: ";
     }
 }
-//ELIMINAMOS LAS PREGUNTAS Y LAS CATEGORIAS
+
+/******************************************************* */
+// ELIMINAR TODO: PREGUNTAS Y CATEGORÍAS
 if (isset($_GET['eliminarTodo'])) {
-    //nos conectamos a la base de datos
-    include("conexion.php");
-    //sentiencia para eliminar los datos de la tabla
-    $query1 ="TRUNCATE TABLE preguntas";
-    $query2 ="TRUNCATE TABLE temas";
-    //eliminamos los datos de la tabla preguntas
-    if (mysqli_query($conn, $query1)) { //Se eliminó correctamente
-        if (mysqli_query($conn, $query2)) { //Se eliminó correctamente
-            $mensaje = "Se eliminaron las preguntas y las categorias";
-            header("Location: index.php");
-        } else {
-            $mensaje = "No se pudo eliminar las categorias en la BD" . mysqli_error($conn);
-        }
+    // Sentencias para eliminar preguntas y categorías
+    $queryEliminarPreguntas = "TRUNCATE TABLE preguntas";
+    $queryEliminarTemas = "TRUNCATE TABLE temas";
+
+    if (mysqli_query($conn, $queryEliminarPreguntas) && mysqli_query($conn, $queryEliminarTemas)) {
+        $mensaje = "Se eliminaron las preguntas y las categorías correctamente.";
+        header("Location: index.php");
+        exit(); // Detener el script después de la redirección
     } else {
-        $mensaje = "No se pudo eliminar en la BD" . mysqli_error($conn);
+        $mensaje = "Error al eliminar preguntas y categorías: ";
     }
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -82,9 +89,8 @@ if (isset($_GET['eliminarTodo'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <link rel="stylesheet" href="./css/estilo.css">
-    <title>Document</title>
+    <title>Configuración del Administrador</title>
 </head>
 <body>
     <div class="contenedor">
@@ -92,40 +98,45 @@ if (isset($_GET['eliminarTodo'])) {
             <h1>QUIZ GAME</h1>
         </header>
         <div class="contenedor-info">
-            <?php include("nav.php") ?>
+            <?php include("nav.php"); ?>
             <div class="panel">
                 <h2>Configuración del Administrador</h2>
                 <hr>
                 <section id="configuracion">
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
                         <div class="fila">
-                            <label for="">Usuario:</label>
-                            <input type="text" name="correo" id="" value = "<?php echo $config['correo']?>" required>
+                            <label for="correo">Usuario:</label>
+                            <input type="text" name="correo" id="correo" value="<?php echo htmlspecialchars($config['correo']); ?>" required>
                         </div>
                         <div class="fila">
-                            <label for="">Password</label>
-                            <input type="text" name="password" id="" value = "<?php echo $config['password']?>" required>
+                            <label for="password">Password</label>
+                            <input type="text" name="password" id="password" value="<?php echo htmlspecialchars($config['password']); ?>" required>
                         </div>
                         <div class="fila">
-                            <label for="">Total Preguntas por Juego</label>
-                            <input type="number" name="totalPreguntas" id="" value = "<?php echo $config['totalPreguntas']?>" required>
+                            <label for="totalPreguntas">Total Preguntas por Juego</label>
+                            <input type="number" name="totalPreguntas" id="totalPreguntas" value="<?php echo isset($obtenerValorConfig['totalPreguntas']) ? (int)$obtenerValorConfig['totalPreguntas'] : 0; ?>" required>
+                        </div>
+                        <div class="fila">
+                            <label for="tiempo">Tiempo de las preguntas (segundos)</label>
+                            <input type="number" name="tiempo" id="tiempo" value="<?php echo isset($obtenerValorConfig['tiempo_por_pregunta']) ? (int)$obtenerValorConfig['tiempo_por_pregunta'] : 0;   ?>" required>
                         </div>
                         <hr>
-                        <input type="submit" value="Actualizar Configuracion" name="actualizar" class="btn-actualizar">
+                        <input type="submit" value="Actualizar Configuración" name="actualizar" class="btn-actualizar">
                     </form>
                 </section>
 
                 <h2>Preguntas y Categorías</h2>
                 <hr>
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get" class="form-eliminar">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" class="form-eliminar">
                     <i class="fa-solid fa-circle-exclamation"></i>
-                    <input type="submit" value="Eliminar Preguntas (Solo se eliminaran las preguntas)" name="eliminarPreguntas" class="btn-eliminar">
+                    <input type="submit" value="Eliminar Preguntas (Solo se eliminarán las preguntas)" name="eliminarPreguntas" class="btn-eliminar">
                     <input type="submit" value="Eliminar Preguntas y Categorías" name="eliminarTodo" class="btn-eliminar">
                 </form>
             </div>
         </div>
     </div>
     <script src="./js/script.js"></script>
-    <script>paginaActiva(3);</script> 
+    <script>paginaActiva(3);</script>
 </body>
 </html>
+

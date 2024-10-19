@@ -1,8 +1,5 @@
 <?php
-//Función para obtener el registro de la configuración del sitio
-
-
-
+//Función para obtener el registro de os usuarios del sitio
 function obtenerConfiguracion() {
     include("conexion.php"); // Incluye la conexión a la base de datos
 
@@ -28,8 +25,8 @@ function obtenerConfiguracion() {
         }
     }
 
-    // Selecciona el registro del usuario administrador (id = 1077425015)
-    $query = "SELECT * FROM usuarios WHERE id = '1077425015'";
+    // Selecciona el registro del usuario administrador (id = 1)
+    $query = "SELECT * FROM usuarios WHERE id_rol = '1'";
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
@@ -39,6 +36,46 @@ function obtenerConfiguracion() {
     $config = mysqli_fetch_assoc($result); // Devuelve la configuración del usuario
     return $config;
 }
+
+//Función para obtener el registro de la configuración del sitio
+
+function obtenerValoresDeConfiguraciones(){
+    include("conexion.php");
+    // Comprobar si existe algún registro en la tabla de usuarios
+    $query = "SELECT COUNT(*) AS total FROM configuracion";
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        die('Error en la consulta: ' . mysqli_error($conn)); // Manejar error si falla la consulta
+    }
+
+    $row = mysqli_fetch_assoc($result);
+
+     // Si no hay configuracion, insertar uno predeterminado
+     if ($row['total'] == '0') {
+        $query = "INSERT INTO configuracion (id, totalPreguntas, tiempo_por_pregunta) 
+                  VALUES ( 1 , 10, 100)";
+        
+        if (mysqli_query($conn, $query)) {
+            echo "Usuario administrador predeterminado creado correctamente.";
+        } else {
+            echo "Error al insertar en la base de datos: " . mysqli_error($conn);
+        }
+    }
+
+    // Selecciona el registro del usuario administrador (id = 1077425015)
+    $query = "SELECT * FROM configuracion WHERE id = '1'";
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        die('Error al seleccionar el configuracion: ' . mysqli_error($conn));
+    }
+
+    $config = mysqli_fetch_assoc($result); // Devuelve la configuración
+    return $config;
+}
+
+
 //Esta función agrega un nuevo tema a la tabla temas
 function agregarNuevoTema($tema) {
     include("conexion.php"); // Incluye la conexión a la base de datos
@@ -131,7 +168,7 @@ function obtenerIdsPreguntasPorCategoria($tema){
     $result = mysqli_query($conn, $query);
     return $result;
 }
-//Estas funciones aumentan los contadores de visitas, preguntas respondidas y juegos completados.
+//
 function aumentarVisita(){
     include("conexion.php");
     //Selecciono el registro de la estadistica

@@ -1,0 +1,7 @@
+debes crear una base de datos con el nombre:
+
+mate_especiales
+
+al crearla importa la base de datos que esta en ./db/mate_especiales.sql
+
+si es el maldito negro de jhonatan no voy a tocar mas esta mierda =)

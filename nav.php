@@ -48,6 +48,14 @@
             </a>
         </li>
         <li>
+            <a href="Usuarios.php">
+                <div class="icono" id="5">
+                    <i class="fa-solid fa-table"></i>
+                </div>
+                Usuarios
+            </a>
+        </li>
+        <li>
             <a href="./funciones/cerrar-sesion.php">
                 <div class="icono" id="5">
                     <i class="fa-solid fa-right-from-bracket"></i>

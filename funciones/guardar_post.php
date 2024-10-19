@@ -66,11 +66,16 @@ $fila = mysqli_fetch_array($resultado_rol);
 // Redirigir al usuario según su rol
 if ($fila) {
     if ($fila['id_rol'] == 2) {
-        header('Location: http://localhost/proyectos/proyecto_de_la_seño_nancy/login_P.php');
+
+        header('../login_P.php');
+
     } elseif ($fila['id_rol'] == 3) {
-        header('Location: http://localhost/proyectos/proyecto_de_la_seño_nancy/login_E.php');
+
+        header('../login_E.php');
+
     } else {
-        header('Location: http://localhost/proyectos/proyecto_de_la_seño_nancy/index.html');
+        
+        header('Location: ../index.html');
     }
 } else {
     echo "Error: No se pudo obtener el rol del usuario.";

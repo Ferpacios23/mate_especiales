@@ -4,7 +4,7 @@ session_start();
 
 //Si el usuario no esta logeado lo enviamos al index
 if (!$_SESSION['usuario']) {
-    header("Location:index-preguntas.php");
+    header("Location:index.html");
     exit();
 
 }
@@ -12,7 +12,7 @@ if (!$_SESSION['usuario']) {
 //
 include("./funciones/funciones.php");
 
-$confi = obtenerConfiguracion();
+$confi = obtenerValoresDeConfiguraciones();
 $totalPreguntasPorJuego = $confi['totalPreguntas'];
 
 //Variables que contral la partida
@@ -27,19 +27,20 @@ if(isset($_GET['siguiente'])){//Ya esta jugando
         $_SESSION['correctas'] = $_SESSION['correctas'] + 1;
     }
 
-    //
+        // Avanzamos a la siguiente pregunta
     $_SESSION['numPreguntaActual'] = $_SESSION['numPreguntaActual'] + 1;
+
+
     if($_SESSION['numPreguntaActual'] < ($totalPreguntasPorJuego)){
         $preguntaActual = obtenerPreguntaPorId($_SESSION['idPreguntas'][ $_SESSION['numPreguntaActual']]);
         $_SESSION['respuesta_correcta'] = $preguntaActual['correcta'];
     }else{
-        //Lo enviamos al pagina de los resultados
-        //Calculo la cantidad de respuestas incorrectas y lo guardo en una variable global
+        // Si no quedan más preguntas, calculamos los resultados y redirigimos
         $_SESSION['incorrectas'] = $totalPreguntasPorJuego - $_SESSION['correctas'];
-        //Obetengo el nombre de la categoria y lo ponogo en una variable global
         $_SESSION['nombreCategoria'] = obtenerNombreTema($_SESSION['idCategoria']);
-        $_SESSION['score'] = ($_SESSION['correctas'] * 100)/$totalPreguntasPorJuego;
+        $_SESSION['score'] = ($_SESSION['correctas'] * 100) / $totalPreguntasPorJuego;
         header("Location: final.php");
+        exit();
     }
 
 }else{//comenzó a jugar
