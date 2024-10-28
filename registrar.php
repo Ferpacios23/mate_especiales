@@ -34,15 +34,15 @@
                             </div>
                             <div class="opcion">
                                 <label for="">Telefono</label>
-                                <input type="text" name="telefono" required>
+                                <input type="number" name="telefono" required>
                             </div>
                             <div class="opcion">
                                 <label for="">correo electronico</label>
-                                <input type="text" name="correo" required>
+                                <input type="email" name="correo" required>
                             </div>
                             <div class="opcion">
                                 <label for="">Contraseña</label>
-                                <input type="text" name="password" required>
+                                <input type="password" name="password" required>
                             </div>
                         </div>
                         <div class="opcion">
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <hr>
-                        <input type="submit" value="Actualizar Pregunta" name="actualizar" class="btn-guardar">
+                        <input type="submit" value="Registrarse" name="actualizar" class="btn-guardar">
                     </form>
                 </section>
             </div>

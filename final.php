@@ -50,6 +50,7 @@ aumentarCompletados();
             </div>
 
             <a href="./funciones/cerrar-sesion.php">Salir</a>
+            <a href="./index-preguntas.php">volver</a>
 
         </div>
     </div>

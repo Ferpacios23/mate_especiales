@@ -11,10 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style_P.css">
 </head>
-<body>    
-<!-- <div class="container-xl py-5 bg bg-danger inicio">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut aliquam libero, ab quidem alias fugit blanditiis distinctio, omnis sunt veritatis aliquid. Asperiores veritatis, doloribus ratione ad odio rem. Reiciendis, ipsam?</p>
-</div> -->
+<body>
 <div class="container">
     
     <div class="container-form">

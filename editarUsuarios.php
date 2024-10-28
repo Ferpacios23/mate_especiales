@@ -1,5 +1,5 @@
 <?php
-include "./conexion.php";
+include "./funciones/conexion.php";
 
 // Obtener los detalles de la artesanía para editar
 if (isset($_GET['id'])) {
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo '<div class="alert alert-success">Artesanía actualizada con éxito.</div>';
-        header('Location: ../Usuarios.php');
+        header('Location: ./Usuarios.php');
     } else {
         echo '<div class="alert alert-danger">Error: ' . $stmt->error . '</div>';
     }
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="./css/estilo.css">
     <title>Document</title>
 </head>
 <body>
@@ -59,13 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>QUIZ GAME</h1>
         </header>
         <div class="contenedor-info">
-            <?php include("../nav.php") ?>
+            <?php include("./nav.php") ?>
             <div class="panel">
                 <h2>editar </h2>
                 <hr>
                 <section id="nuevaPregunta">
 
-                    <form action="editar.php" method="POST">
+                    <form action="editarUsuarios.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $artesania['id']; ?>">
                         <div class="opciones">
                             <div class="opcion">
@@ -88,10 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <hr>
                         <input type="submit" value="Actualizar Pregunta" name="actualizar" class="btn-guardar" >
-                        </form>
-
-
-
+                    </form>
                 </section>
             </div>
         </div>

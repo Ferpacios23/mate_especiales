@@ -54,12 +54,13 @@
                          // Asegurarse de detener la ejecución después de la redirección
                     } else {
                         // Si el rol no es reconocido, redirigir a una página de error o inicio
-                        header("Location: error.php");
+                        header("Location: ../index.html");
                         
                     }
                 } else {
                     // Contraseña incorrecta
                     echo "Las contraseñas no coinciden.";
+                    header("location: ../index.html");
                 }
             } else {
                 // Si no se encuentra el correo en la base de datos

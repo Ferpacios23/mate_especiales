@@ -119,7 +119,7 @@ $resltado_temas = obetenerTodosLosTemas();
                         </div>
                         <div class="opcion">
                             <label for="">Correcta</label>
-                            <select name="correcta" id="" class="correcta">
+                            <select name=" correcta " id="" class="correcta">
                                 <option value="A" <?php if($pregunta['correcta']=='A'){ echo "selected";}?>>A</option>
                                 <option value="B" <?php if($pregunta['correcta']=='B'){ echo "selected";}?>>B</option>
                                 <option value="C" <?php if($pregunta['correcta']=='C'){ echo "selected";}?>>C</option>

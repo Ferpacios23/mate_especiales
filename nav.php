@@ -57,7 +57,7 @@
         </li>
         <li>
             <a href="./funciones/cerrar-sesion.php">
-                <div class="icono" id="5">
+                <div class="icono" id="6">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
                 Salir

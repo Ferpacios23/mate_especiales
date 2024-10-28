@@ -53,7 +53,7 @@ if (isset($_GET['idCategoria'])) {
                 <?php while ($cat = mysqli_fetch_assoc($categorias)): ?>
                 <div class="categoria">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" id="<?php echo htmlspecialchars($cat['tema']); ?>">
-                        <input type="hidden" name="idCategoria" value="<?php echo htmlspecialchars($cat['tema']); ?>">
+                        <input type="hidden" name=" idCategoria" value="<?php echo htmlspecialchars($cat['tema']); ?>">
                         <a href="javascript:{}" onclick="document.getElementById('<?php echo htmlspecialchars($cat['tema']); ?>').submit(); return false;">
                             <?php echo obtenerNombreTema($cat['tema']); ?>
                         </a>

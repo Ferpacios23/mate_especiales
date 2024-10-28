@@ -1,3 +1,5 @@
+
+
 function seleccionar(labelSeleccionado) {
     var labels = document.getElementsByTagName("label");
     labels[0].className = "";
@@ -20,3 +22,4 @@ $(function() {
         animate: 2000,
     });
 });
+

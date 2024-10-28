@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 21:08:29
+-- Tiempo de generación: 28-10-2024 a las 22:52:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,7 +38,7 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `totalPreguntas`, `tiempo_por_pregunta`) VALUES
-(1, 8, 100);
+(1, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `estadisticas` (
 --
 
 INSERT INTO `estadisticas` (`id`, `visitas`, `respondidas`, `completados`) VALUES
-(1, 167, 42, 13);
+(1, 216, 81, 29);
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,19 @@ CREATE TABLE `preguntas` (
 
 INSERT INTO `preguntas` (`id`, `tema`, `pregunta`, `opcion_a`, `opcion_b`, `opcion_c`, `opcion_d`, `correcta`) VALUES
 (1, 2, 'a ', 'a', 'b', 'c', 'd', 'A'),
-(2, 1, 'b', 'a', 'b', 'c', 'd', 'A');
+(2, 1, 'b', 'a', 'b', 'c', 'd', 'B'),
+(3, 1, 'a', 'a', 'b', 'c', 'd', 'A'),
+(4, 1, 'c', 'a', 'b', 'c', 'd', 'C'),
+(5, 1, 'd', 'a', 'b', 'c', 'd', 'D'),
+(6, 2, 'b', 'a', 'b', 'c', 'd', 'B'),
+(7, 2, 'c', 'a', 'b', 'c', 'd', 'C'),
+(8, 2, 'd', 'a', 'b', 'c', 'd', 'D'),
+(9, 2, 'a2', 'a', 'b', 'c', 'd', 'A'),
+(10, 2, 'b2', 'a', 'b', 'c', 'd', 'B'),
+(11, 2, 'c2', 'a', 'b', 'c', 'd', 'C'),
+(12, 2, 'c2', 'a', 'b', 'c', 'd', 'C'),
+(13, 2, 'c2', 'a', 'b', 'c', 'd', 'C'),
+(14, 2, 'c2', 'a', 'b', 'c', 'd', 'C');
 
 -- --------------------------------------------------------
 
@@ -145,9 +157,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `telefono`, `correo`, `password`, `fechas_creacion`, `id_rol`) VALUES
-('1004251550', 'Manuel Palacios Mosquera', '3246173924', 'manuel@gmail.com', '$2y$10$JFhjEdRVBkTuOPrupoOz0.i.yFMYQjUFWDFVnkphFqf.ZA3Nn63Bq', '2024-10-19', 2),
+('1004251550', 'Manuel Palacios Mosquera', '3246173924', 'manuel@gmail.com', '$2y$10$JFhjEdRVBkTuOPrupoOz0.i.yFMYQjUFWDFVnkphFqf.ZA3Nn63Bq', '2024-10-28', 3),
 ('1077425015', 'ferly palacios moya', '3234163627', 'admin@gmail.com', '$2y$10$yPMUxVcUdRWjWEmdv0sVv.JFdkbAgjJNzzfPDVfolESNm.F5lWkc.', '2024-10-19', 1),
-('542570187', 'Blanca moya', '3116094236', 'blanca@gmail.com', '$2y$10$5THU.WLkbNxUaiObk6UunexPDZMqIUI0a0ITU17vBXYpil8mgOz1u', '2024-10-19', 2);
+('542570187', 'Blanca moya', '3116094236', 'blanca@gmail.com', '$2y$10$5THU.WLkbNxUaiObk6UunexPDZMqIUI0a0ITU17vBXYpil8mgOz1u', '2024-10-28', 2);
 
 --
 -- Índices para tablas volcadas
@@ -210,7 +222,7 @@ ALTER TABLE `estadisticas`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `temas`

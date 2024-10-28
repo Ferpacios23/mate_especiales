@@ -22,53 +22,6 @@
                     <div class="container-fluid px-4">
                         
                         <div class="card mb-4">
-                            <!-- <div class="card-header">
-                                
-
-
-                                <div class="container-xl">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-target=".bd-example-modal-lg" data-bs-target="#modal">Crear</button>
-                                    <div id="modal" class="modal fade">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h2 class="modal-title">Nuevo Registro</h2>
-
-                                                    <button data-bs-dismiss="modal" type="button" class="btn-close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                <form method="POST" action="./crud/crear.php">
-                                                    <div class="mb-3">
-                                                        <label for="nombre" class="form-label">Nombre</label>
-                                                        <input type="text" class="form-control" id="nombre" name="nombre">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="telefono" class="form-label">Telefono</label>
-                                                        <input type="text" class="form-control" id="telefono" name="telefono">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="email" class="form-label">Correo electronico</label>
-                                                        <input type="email" class="form-control" id="email" name="correo">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="Password" class="form-label">contraseña</label>
-                                                        <input type="password" class="form-control" id="Password" name="contrasenia" required minlength="7">
-                                                    </div>
-                                                    
-                                                    <input type="submit" class="btn btn-primary" name="enviar" value="Registrarse">
-                                                    
-                                                    <button data-bs-dismiss="modal" type="button" class="btn btn-danger">
-                                                        Cerrar
-                                                    </button>
-                                                </form>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
                             <table class="table">
                                 <!-- < id="datatablesSimple"> -->
                                     <thead>
@@ -106,7 +59,7 @@
                                     <td><?php echo $fila['telefono']; ?></td>
 
                                     <td>
-                                    <a  class="btn btn-warning" href="./funciones/editar.php ?id=<?php echo $fila['id']?>   ">Editar </a>
+                                    <a  class="btn btn-warning" href="./editarUsuarios.php ?id=<?php echo $fila['id']?>   ">Editar </a>
 
                                 </td>
                                 <td>

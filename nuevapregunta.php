@@ -5,7 +5,7 @@ session_start();
 if (!$_SESSION['usuarioLogeado']) {
     header("Location:login.php");
 
-}
+} 
 
 include("./funciones/funciones.php");
 

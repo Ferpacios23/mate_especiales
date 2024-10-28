@@ -6,7 +6,7 @@ if (!$_SESSION['usuarioLogeado']) {
 }
 
     include("./funciones/conexion.php");
-    $id = $_GET['idPregunta'];
+    $id = $_GET['idPregunta '];
 
     $query = "DELETE FROM preguntas WHERE id = '$id'";
     mysqli_query($conn, $query);
