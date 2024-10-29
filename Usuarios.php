@@ -17,7 +17,7 @@
         <div class="contenedor-info">
             <?php include("nav.php"); ?>
             <div class="panel">
-                <h2>Configuración del Administrador</h2>
+                <h2>Configuración de usuarios</h2>
                 <main>
                     <div class="container-fluid px-4">
                         
