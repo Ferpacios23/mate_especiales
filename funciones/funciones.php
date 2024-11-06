@@ -94,7 +94,7 @@ function agregarNuevoTema($tema) {
     return $mensaje;
 }
 //Obtiene todos los registros de la tabla temas
-function obetenerTodosLosTemas(){
+function obtenerTodosLosTemas(){
     include("conexion.php");
     $query = "SELECT * FROM temas";
     $result = mysqli_query($conn, $query);

@@ -25,13 +25,13 @@ $categorias =  obtenerCategorias();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./css/estilo.css">
-    <title>QUIZ GAME</title>
+    <title>Mate Esp</title>
 </head>
 
 <body>
     <div class="contenedor">
         <header>
-            <h1>QUIZ GAME</h1>
+            <h1>Mate Esp</h1>
         </header>
         <div class="contenedor-info">
             <?php include("nav.php") ?>

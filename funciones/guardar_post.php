@@ -31,8 +31,12 @@ if (!$stmt) {
     die('Error al preparar la consulta: ' . mysqli_error($conn));
 }
 
+
+// Crear la fecha como una variable para evitar el problema de referencia
+$fecha_creacion = date('Y-m-d');
+
 // Vincular los parámetros a la consulta
-mysqli_stmt_bind_param($stmt, 'ssssssi', $identificacion, $nombre, $telefono, $correo, $contras, date('Y-m-d'), $id_rol);
+mysqli_stmt_bind_param($stmt, 'ssssssi', $identificacion, $nombre, $telefono, $correo, $contras, $fecha_creacion, $id_rol);
 
 // Ejecutar la consulta
 if (mysqli_stmt_execute($stmt)) {
@@ -66,21 +70,15 @@ $fila = mysqli_fetch_array($resultado_rol);
 // Redirigir al usuario según su rol
 if ($fila) {
     if ($fila['id_rol'] == 2) {
-
-        header('../login_P.php');
-
+        header('Location: ../login_P.php');
     } elseif ($fila['id_rol'] == 3) {
-
-        header('../login_E.php');
-
+        header('Location: ../login_E.php');
     } else {
-        
         header('Location: ../index.html');
     }
 } else {
     echo "Error: No se pudo obtener el rol del usuario.";
 }
-
 // Cerrar la consulta y la conexión
 mysqli_stmt_close($stmt_rol);
 mysqli_close($conn);

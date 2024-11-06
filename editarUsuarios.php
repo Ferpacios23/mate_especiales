@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="contenedor">
         <header>
-            <h1>QUIZ GAME</h1>
+            <h1>Mate Esp</h1>
         </header>
         <div class="contenedor-info">
             <?php include("./nav.php") ?>
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             
                         </div>
                         <hr>
-                        <input type="submit" value="Actualizar Pregunta" name="actualizar" class="btn-guardar" >
+                        <input type="submit" value="Actualizar Usuario" name="actualizar" class="btn-guardar" >
                     </form>
                 </section>
             </div>

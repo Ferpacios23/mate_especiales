@@ -36,8 +36,10 @@
             
             <input class="button" type="submit" name="ingresar" placeholder="INICIAR SESIÓN"></input>
         </form>
+        <?php if (isset($_GET['ingresar'])) : ?>
+            <span> <?php echo $mensaje ?></span>
+        <?php endif ?>
     </div>
-
     <div class="container-form">
         <form class="sign-up" action="./funciones/guardar_post.php" method="POST">
             <h2>Registrarse</h2>
@@ -69,11 +71,6 @@
             <button name="registrarse" class="button" title="submit" >REGISTRARSE</button>
         </form>
     </div> 
-
-
-
-
-
     <div class="container-welcome" >
         <div class="welcome-sign-up welcome">
             <h3>¡Bienvenido!</h3>
@@ -86,10 +83,7 @@
             <button class="button" id="btn-sign-in">Iniciar Sesión</button>
         </div>
     </div>
-
 </div>
-
-
 <script src="js/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

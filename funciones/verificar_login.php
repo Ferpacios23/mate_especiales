@@ -54,8 +54,7 @@
                          // Asegurarse de detener la ejecución después de la redirección
                     } else {
                         // Si el rol no es reconocido, redirigir a una página de error o inicio
-                        header("Location: ../index.html");
-                        
+                        $mensaje = " Correo o Contraseña incorrecta" ;
                     }
                 } else {
                     // Contraseña incorrecta

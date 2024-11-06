@@ -23,7 +23,7 @@ aumentarCompletados();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./css/style_juego.css">
-    <title>QUIZ GAME</title>
+    <title>Mate Esp</title>
 </head>
 <body>
 
@@ -42,10 +42,10 @@ aumentarCompletados();
             </div>
             <div class="score">
                 <div class="box">
-                    <div class="chart" data-percent="<?php echo $_SESSION['score'] ?>">
-                       <?php echo $_SESSION['score'] ?>%
+                    <div class="chart" data-percent="<?php echo number_format($_SESSION['score'], decimals: 2); ?>">
+                       <?php echo number_format($_SESSION['score'], decimals: 2); ?>%
                     </div>
-                    <h2>SCORE</h2>
+                    <h2>Puntuación</h2>
                 </div>
             </div>
 

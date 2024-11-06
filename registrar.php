@@ -13,7 +13,7 @@
 <body>
     <div class="contenedor">
         <header>
-            <h1>QUIZ GAME</h1>
+            <h1>Mate Esp</h1>
         </header>
         <div class="contenedor-info">
             <?php include("nav.php") ?>

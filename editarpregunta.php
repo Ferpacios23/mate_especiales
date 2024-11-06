@@ -51,7 +51,7 @@ if(isset($_GET['nuevoTema'])){
 }
 
 //Obtengo todos los temas de la bd
-$resltado_temas = obetenerTodosLosTemas();
+$resltado_temas = obtenerTodosLosTemas();
 
 
 ?>
@@ -69,7 +69,7 @@ $resltado_temas = obetenerTodosLosTemas();
 <body>
     <div class="contenedor">
         <header>
-            <h1>QUIZ GAME</h1>
+            <h1>Mate Esp</h1>
         </header>
         <div class="contenedor-info">
             <?php include("nav.php") ?>
@@ -97,7 +97,7 @@ $resltado_temas = obetenerTodosLosTemas();
                         </div>
                         <div class="fila">
                             <label for="">Pregunta:</label>
-                            <textarea name="pregunta" id="" cols="30" rows="10" reqired><?php echo $pregunta['pregunta']?></textarea>
+                            <textarea name="pregunta" id="" cols="30" rows="10" required><?php echo $pregunta['pregunta']?></textarea>
                         </div>
                         <div class="opciones">
                             <div class="opcion">
@@ -119,7 +119,7 @@ $resltado_temas = obetenerTodosLosTemas();
                         </div>
                         <div class="opcion">
                             <label for="">Correcta</label>
-                            <select name=" correcta " id="" class="correcta">
+                            <select name="correcta" id="" class="correcta">
                                 <option value="A" <?php if($pregunta['correcta']=='A'){ echo "selected";}?>>A</option>
                                 <option value="B" <?php if($pregunta['correcta']=='B'){ echo "selected";}?>>B</option>
                                 <option value="C" <?php if($pregunta['correcta']=='C'){ echo "selected";}?>>C</option>

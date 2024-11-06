@@ -65,13 +65,6 @@
             <button name="registrarse" class="button" title="submit" >REGISTRARSE</button>
         </form>
     </div>
-
-
-
-
-
-    
-
     <div class="container-welcome">
         <div class="welcome-sign-up welcome">
             <h3>¡Bienvenido!</h3>
