@@ -3,7 +3,7 @@ session_start();
 
 // Verificar si el usuario está logueado, de lo contrario, redirigir al login
 if (!isset($_SESSION['usuarioLogeado'])) {
-    header("Location: index.html");
+    header("Location: login_princimal.html");
     exit();
 }
 
