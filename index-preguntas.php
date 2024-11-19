@@ -13,6 +13,7 @@ include("./funciones/funciones.php");
 // Aumentar el contador de visitas
 aumentarVisita();
 
+
 // Obtener la configuración del juego
 $config = obtenerValoresDeConfiguraciones();
 $totalPreguntasPorJuego = (int)$config['totalPreguntas'];
